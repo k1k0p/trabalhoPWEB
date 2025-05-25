@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Login / Registo</title>
+  <link rel="stylesheet" href="css/registo.css" />
+</head>
+
+<body>
+
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+      <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+      <div class="login-form">
+
+        <!-- SIGN IN -->
+        <div class="sign-in-htm">
+          <div class="group">
+            <label for="user" class="label">Username</label>
+            <input id="loginUsername" type="text" class="input">
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Password</label>
+            <input id="loginPassword" type="password" class="input">          </div>
+          <div class="group">
+            <input type="submit" class="button" value="Sign In" id="btnLogin">
+          </div>
+        </div>
+
+        <!-- SIGN UP -->
+        <div class="sign-up-htm">
+          <div class="group">
+            <label for="user" class="label">Username</label>
+            <input id="registerUsername" type="text" class="input">
+                      </div>
+          <div class="group">
+            <label for="pass" class="label">Password</label>
+            <input id="registerPassword" type="password" class="input">
+          </div>
+
+          <!-- NOVO SELECT ADICIONADO AQUI -->
+          <div class="group">
+            <label for="role" class="label">Tipo de Utilizador</label>
+            <select id="registerRole" class="input" required>
+              <option value="">Selecione...</option>
+              <option value="cliente">Cliente</option>
+              <option value="tecnico">Técnico</option>
+            </select>
+          </div>
+
+          <div class="group">
+            <input type="submit" class="button" value="Sign Up" id="btnRegisto">
+          </div>
+          <div class="hr"></div>
+          <div class="foot-lnk">
+            <label for="tab-1">Already Member?</label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/loginRegisto.js" defer></script>
+</body>
+
+</html>
+
+
+  <!-- https://codepen.io/FlorinPop17/pen/vPKWjd -->

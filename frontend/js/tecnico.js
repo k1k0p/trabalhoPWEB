@@ -61,9 +61,13 @@ function logout() {
 }
 =======
   window.location.href = 'loginRegisto.html';
+<<<<<<< HEAD
 }
 >>>>>>> efbb43a (Sprint 2)
 =======
   window.location.href = 'loginRegisto.html';
 }
 >>>>>>> 8d94e5a (Sprint 2)
+=======
+}
+>>>>>>> 34b4d96 (Sprint 3)

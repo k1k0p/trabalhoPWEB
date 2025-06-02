@@ -77,4 +77,3 @@ document.addEventListener('DOMContentLoaded', () => {
 function paginainicial() {
   window.location.href = 'cliente.html';
 }
-

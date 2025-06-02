@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   fetchInstalacoes();
+  fetchLeituras(); // <- Nova funcionalidade
 });
 
 async function fetchInstalacoes() {
@@ -57,18 +58,16 @@ async function fetchInstalacoes() {
 
       if (instalacao.certificadoId && instalacao.certificadoId.path) {
         const link = document.createElement('a');
-        link.href = `http://localhost:3000${instalacao.certificadoId.path}`;  
+        link.href = `http://localhost:3000${instalacao.certificadoId.path}`;
         link.textContent = 'Download do Certificado';
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-
         div.appendChild(link);
       } else {
         const p = document.createElement('p');
         p.textContent = 'Certificado ainda não disponível.';
         div.appendChild(p);
       }
-
 
       div.appendChild(document.createElement('hr'));
       container.appendChild(div);
@@ -77,6 +76,51 @@ async function fetchInstalacoes() {
   } catch (err) {
     console.error(err);
     container.innerHTML = '<p>Erro ao carregar instalações.</p>';
+  }
+}
+
+async function fetchLeituras() {
+  const token = sessionStorage.getItem('token');
+  const clienteId = sessionStorage.getItem('userId'); 
+  const container = document.getElementById('leiturasContainer');
+  container.innerHTML = '<p>A carregar leituras...</p>';
+
+  try {
+    const response = await fetch(`http://localhost:3000/api/leituras/${clienteId}`, {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      }
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.msg || 'Erro ao carregar leituras');
+    }
+
+    const leituras = await response.json();
+
+    if (leituras.length === 0) {
+      container.innerHTML = '<p>Não foram encontradas leituras.</p>';
+      return;
+    }
+
+    container.innerHTML = '';
+    leituras.forEach(l => {
+      const div = document.createElement('div');
+      div.classList.add('leitura');
+      div.innerHTML = `
+        <p><strong>Data:</strong> ${new Date(l.data).toLocaleString()}</p>
+        <p><strong>Produção:</strong> ${l.producao} kWh</p>
+        <p><strong>Gastos:</strong> ${l.gastos} kWh</p>
+        <p><strong>Créditos:</strong> ${l.creditos}</p>
+        <hr>
+      `;
+      container.appendChild(div);
+    });
+
+  } catch (error) {
+    console.error('Erro ao carregar leituras:', error);
+    container.innerHTML = `<p>Erro ao carregar leituras: ${error.message}</p>`;
   }
 }
 

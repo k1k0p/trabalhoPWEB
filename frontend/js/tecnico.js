@@ -56,9 +56,14 @@ function abrirCertificado(instalacaoId, clienteId, nomeCliente) {
 function logout() {
   sessionStorage.clear();
 <<<<<<< HEAD
+<<<<<<< HEAD
   window.location.href = 'index.html';
 }
 =======
   window.location.href = 'loginRegisto.html';
 }
 >>>>>>> efbb43a (Sprint 2)
+=======
+  window.location.href = 'loginRegisto.html';
+}
+>>>>>>> 8d94e5a (Sprint 2)
